@@ -1,24 +1,25 @@
 def bubble_sort(array)
   sorted = array.sort { |a,b| a <=> b }
+  to_sort = array[0..-1]
 
-  if array != sorted 
-    array.each_with_index do |value, index| 
+  if to_sort != sorted 
+    to_sort.each_with_index do |value, index| 
       increment = 0
       current_val = 0
-      while increment < array.length - 1
-        if index < array.length - 1 
-          if array[index] > array[index + 1]    
+      while increment < to_sort.length - 1
+        if index < to_sort.length - 1 
+          if to_sort[index] > to_sort[index + 1]    
             current_val = value
-            array[index] = array[index + 1]
-            array[index + 1] = current_val 
+            to_sort[index] = to_sort[index + 1]
+            to_sort[index + 1] = current_val 
           end
         end
         increment += 1
       end
     end
-    bubble_sort(array)
+    bubble_sort(to_sort)
   else
-    sorted_array = array
+    to_sort
   end
 end
 
