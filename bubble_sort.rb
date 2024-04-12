@@ -3,31 +3,35 @@ def bubble_sort(array)
   to_sort = []
   array.each {|e| to_sort << e.dup}
 
-  if to_sort != sorted 
-    to_sort.each_with_index do |value, index| 
-      increment = 0
-      current_val = 0
-      while increment < to_sort.length
-        if index < to_sort.length - 1 
-          if to_sort[index] > to_sort[index + 1]    
-            current_val = value
-            to_sort[index] = to_sort[index + 1]
-            to_sort[index + 1] = current_val 
-          end
-        end
-        increment += 1
-      end
-      # p to_sort
-    end
-    bubble_sort(to_sort)
+  length = array.length
+  sorted_array = array.sort { |a, b| a <=> b }
+
+  if to_sort != sorted_array
+    sort_method(to_sort, length)
   else
-    # p check
-    # p check.all?
     to_sort
   end
 end
 
- p bubble_sort([4, 3, 78, 2, 0, 2])
+def sort_method(array, length)
+  i = 0
+  cur_val = 0
+  length -= 1
+  if length > 0 
+    while i < length
+      if i < length && array[i] > array[i + 1]
+        cur_val = array[i]
+        array[i] = array[i + 1]
+        array[i + 1] = cur_val
+      end
+      i += 1
+    end
+    sort_method(array, length)
+  end
+  array
+end
+
+p bubble_sort([4, 3, 78, 2, 0, 2])
 
 # p bubble_sort([3, 4, 5, 6, 6, 7])
 
